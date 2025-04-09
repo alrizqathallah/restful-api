@@ -7,6 +7,7 @@ import morgan from "morgan";
 import logger from "./utils/logger";
 import notFoundHandler from "./middlewares/notFoundHandler";
 import errorHandler from "./middlewares/errorHandler";
+import Status from "./constants/http-status-code";
 
 class App {
   public readonly express: Application;
@@ -40,7 +41,7 @@ class App {
     // TODO: Health Check
     this.express.get("/health", (req: Request, res: Response) => {
       logger.debug("Healt check endpoint called");
-      res.status(200).json({
+      res.status(Status.OK).json({
         status: "success",
         message: "Health Check OK",
       });

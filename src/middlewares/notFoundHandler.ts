@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
+import Status from "../constants/http-status-code";
 
 class NotFoundHandler {
   handle(req: Request, res: Response, next: NextFunction) {
-    res.status(404).json({
+    res.status(Status.NOT_FOUND).json({
       status: "fail",
       message: "Not Found",
     });

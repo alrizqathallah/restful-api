@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import logger from "../utils/logger";
 import Env from "../config/env";
+import Status from "../constants/http-status-code";
 
 interface CustomError extends Error {
   statusCode?: number;
@@ -15,7 +16,7 @@ class ErrorHandler {
     res: Response,
     next: NextFunction
   ): void {
-    const statusCode = err.statusCode || 500;
+    const statusCode = err.statusCode || Status.INTERNAL_SERVER_ERROR;
     const message = err.message || "Internal Server Error";
 
     logger.error(
